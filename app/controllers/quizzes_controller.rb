@@ -12,7 +12,7 @@ class QuizzesController < ApplicationController
       flash[:success] = "Quiz has been created"
       redirect_to quizzes_path
     else
-      flash[:danger] = "Quiz has not been created"
+      flash.now[:danger] = "Quiz has not been created"
       render :new
     end
   end

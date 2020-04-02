@@ -10,4 +10,5 @@
   </div>
 
   <%= link_to "Edit Quiz", edit_quiz_path(@quiz) %>
+  <%= link_to "Delete Quiz", quiz_path(@quiz), method: :delete, data: { confirm: "Are you sure?"} %>
 </article>

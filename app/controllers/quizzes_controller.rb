@@ -33,6 +33,14 @@ class QuizzesController < ApplicationController
     end
   end
 
+  def destroy
+    @quiz = Quiz.find(params[:id])
+    if @quiz.destroy
+      flash[:success] = "Quiz has been deleted"
+      redirect_to quizzes_path
+    end
+  end
+
   def edit
     @quiz = Quiz.find(params[:id])
   end

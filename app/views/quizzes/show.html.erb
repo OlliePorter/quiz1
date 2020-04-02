@@ -1,0 +1,11 @@
+<article class="detail-quiz">
+  <h1 class="quiz-detail-name"><%= @quiz.name %></h1>
+
+  <div class="glyphicon glyphicon-calendar" id="quiz-date">
+    <%= @quiz.created_at.strftime("%b %d, %y") %>
+  </div>
+
+  <div class="quiz-description">
+    <%= @quiz.description %>
+  </div>
+</article>

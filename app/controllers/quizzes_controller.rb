@@ -22,6 +22,21 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.find(params[:id])
   end
 
+  def update
+    @quiz = Quiz.find(params[:id])
+    if @quiz.update(quiz_params)
+      flash[:success] = "Quiz has been updated"
+      redirect_to @quiz
+    else
+      flash.now[:danger] = "Quiz has not been updated"
+      render :edit
+    end
+  end
+
+  def edit
+    @quiz = Quiz.find(params[:id])
+  end
+
   private
 
   def quiz_params

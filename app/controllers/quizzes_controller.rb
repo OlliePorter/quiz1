@@ -19,11 +19,11 @@ class QuizzesController < ApplicationController
   end
 
   def show
-    @quiz = Quiz.find(params[:id])
+    set_quiz
   end
 
   def update
-    @quiz = Quiz.find(params[:id])
+    set_quiz
     if @quiz.update(quiz_params)
       flash[:success] = "Quiz has been updated"
       redirect_to @quiz
@@ -34,7 +34,7 @@ class QuizzesController < ApplicationController
   end
 
   def destroy
-    @quiz = Quiz.find(params[:id])
+    set_quiz
     if @quiz.destroy
       flash[:success] = "Quiz has been deleted"
       redirect_to quizzes_path
@@ -42,12 +42,16 @@ class QuizzesController < ApplicationController
   end
 
   def edit
-    @quiz = Quiz.find(params[:id])
+    set_quiz
   end
 
   private
 
   def quiz_params
     params.require(:quiz).permit(:name, :description)
+  end
+
+  def set_quiz
+    @quiz = Quiz.find(params[:id])
   end
 end

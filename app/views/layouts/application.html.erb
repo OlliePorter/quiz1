@@ -7,9 +7,20 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
   </head>
 
   <body>
+    <div class="container-fliud">
+      <% flash.each do |name, msg| %>
+        <div class='alert alert-<%= "#{name}" %>'>
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+        </div>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>

@@ -7,6 +7,8 @@ ruby '2.6.2'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.2'
 # Bootstrap for styling
 gem 'bootstrap-sass'
+# User authentication
+gem 'devise'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server

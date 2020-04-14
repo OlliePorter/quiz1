@@ -1,0 +1,29 @@
+<header role="banner">
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <%= link_to "Quiz App", root_path, class: "navbar-brand" %>
+      </div>
+      <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="active"><%= link_to "Quizzes", "#" %></li>
+          <% if user_signed_in? %>
+          <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+            <div class="navbar-right">
+              <p class="navbar-text">
+                Signed in as <%= "#{current_user.email}" %>
+              </p>
+            </div>
+          <% end %>
+          <li><%= link_to "Sign Up", new_user_registration_path %></li>
+          <li><%= link_to "Sign In", new_user_session_path %></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

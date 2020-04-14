@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "Creating questions" do
+
   scenario "A new quiz is created" do
     visit "/"
 

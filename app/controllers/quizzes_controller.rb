@@ -1,4 +1,6 @@
 class QuizzesController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+
   def index
     @quizzes = Quiz.all
   end

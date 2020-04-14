@@ -13,14 +13,8 @@
   </head>
 
   <body>
-    <div class="container-fliud">
-      <% flash.each do |name, msg| %>
-        <div class='alert alert-<%= "#{name}" %>'>
-          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-          <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-        </div>
-      <% end %>
-    </div>
-    <%= yield %>
+    <%= render 'shared/header' %>
+    <%= render 'shared/main' %>
+    <%= render 'shared/footer' %>
   </body>
 </html>

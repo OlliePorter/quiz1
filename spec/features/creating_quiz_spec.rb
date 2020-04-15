@@ -2,6 +2,11 @@ require 'rails_helper'
 
 RSpec.feature "Creating questions" do
 
+  before do
+    @john = User.create!(email: "john@example.com", password: "password")
+    login_as(@john)
+  end
+
   scenario "A new quiz is created" do
     visit "/"
 
@@ -13,6 +18,7 @@ RSpec.feature "Creating questions" do
 
     expect(page).to have_content("Quiz has been created")
     expect(page.current_path).to eq(quizzes_path)
+    expect(page).to have_content("Created by: #{@john.email}")
   end
 
   scenario "A quiz is fails to be created" do

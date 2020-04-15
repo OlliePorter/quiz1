@@ -3,7 +3,9 @@ require "rails_helper"
 RSpec.feature "Deleting a Quiz" do
 
   before do
-    @quiz = Quiz.create(name:"Drag Race Quiz", description: "This is a quiz about the tv show Drag Race")
+    @john = User.create!(email: "john@example.com", password: "password")
+    login_as(@john)
+    @quiz = Quiz.create(name:"Drag Race Quiz", description: "This is a quiz about the tv show Drag Race", user: @john)
   end
 
   scenario do "A quiz can be deleted"

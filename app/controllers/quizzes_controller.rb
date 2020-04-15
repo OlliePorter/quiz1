@@ -10,7 +10,7 @@ class QuizzesController < ApplicationController
   end
 
   def create
-    @quiz = Quiz.new(quiz_params)
+    @quiz = current_user.quizzes.build(quiz_params)
     if @quiz.save
       flash[:success] = "Quiz has been created"
       redirect_to quizzes_path

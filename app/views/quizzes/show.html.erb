@@ -9,6 +9,8 @@
     <%= @quiz.description %>
   </div>
 
+  <% if user_signed_in? && current_user == @quiz.user %>
   <%= link_to "Edit Quiz", edit_quiz_path(@quiz) %>
   <%= link_to "Delete Quiz", quiz_path(@quiz), method: :delete, data: { confirm: "Are you sure?"} %>
+  <% end %>
 </article>

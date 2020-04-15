@@ -9,6 +9,8 @@ gem 'rails', '~> 6.0.2', '>= 6.0.2.2'
 gem 'bootstrap-sass'
 # User authentication
 gem 'devise'
+# Controller testing
+gem 'rails-controller-testing'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server

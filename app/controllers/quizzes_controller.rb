@@ -22,6 +22,7 @@ class QuizzesController < ApplicationController
 
   def show
     set_quiz
+    @question = @quiz.questions.build
   end
 
   def update

@@ -26,12 +26,17 @@ class QuizzesController < ApplicationController
 
   def update
     set_quiz
-    if @quiz.update(quiz_params)
-      flash[:success] = "Quiz has been updated"
-      redirect_to @quiz
+    if @quiz.user != current_user
+      flash[:danger] = "You can only edit your own quiz."
+      redirect_to root_path
     else
-      flash.now[:danger] = "Quiz has not been updated"
-      render :edit
+      if @quiz.update(quiz_params)
+        flash[:success] = "Quiz has been updated"
+        redirect_to @quiz
+      else
+        flash.now[:danger] = "Quiz has not been updated"
+        render :edit
+      end
     end
   end
 
@@ -45,6 +50,10 @@ class QuizzesController < ApplicationController
 
   def edit
     set_quiz
+    if @quiz.user != current_user
+      flash[:danger] = "You can only edit your own quiz."
+      redirect_to root_path
+    end
   end
 
   private

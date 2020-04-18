@@ -14,3 +14,60 @@
   <%= link_to "Delete Quiz", quiz_path(@quiz), method: :delete, data: { confirm: "Are you sure?"} %>
   <% end %>
 </article>
+
+<div class='col-md-12'>
+  <%= form_for [ @quiz, @question ], :html => {class: "form-horizontal", role: "form"} do |f| %>
+    <% if @question.errors.any? %>
+      <div class="panel panel-danger col-md-offset-1">
+        <div class="panel-heading">
+          <h2 class="panel-title">
+            <%= pluralize(@question.errors.count, "error") %>
+            prohibited this question from being saved:
+          </h2>
+          <div class="panel-body">
+            <ul>
+              <% @question.errors.full_messages.each do |msg| %>
+                <li>
+                  <%= msg %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <div class='form-group'>
+      <div class='control-label col-md-2'>
+        <%= f.label :text, 'New Question' %>
+      </div>
+      <div class='col-md-10'>
+        <%= f.text_field :text, rows: 10, class: 'form-control', placeholder: 'Enter your question' %>
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <div class='col-md-offset-2 col-md-10'>
+        <%= f.submit "Add Question", class: 'btn btn-primary btn-lg pull-right' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class='col-md-12'>
+  <header>
+    <h2>Questions</h2>
+  </header>
+  <div class="col-md-10">
+    <% if @quiz.questions.any? %>
+      <% @quiz.questions.persisted.each do |question| %>
+        <div class="quiz-body">
+          <%= question.text %>
+        </div>
+        <hr>
+      <% end %>
+    <% else %>
+      There are no questions to show.
+    <% end %>
+  </div>
+</div>

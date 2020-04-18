@@ -7,28 +7,9 @@ RSpec.feature "Showing quizzes" do
     @quiz = Quiz.create(name:"Drag Race Quiz", description: "This is a quiz about the tv show Drag Race", user: @john)
   end
 
-  scenario "A non signed in user does not see the Edit or Delete links" do
+  scenario "A non signed in user is redirected to the login page" do
     visit '/'
-
-    click_link @quiz.name
-
-    expect(page).to have_content(@quiz.name)
-    expect(page).to have_content(@quiz.description)
-    expect(current_path).to eq(quiz_path(@quiz))
-
-    expect(page).not_to have_link("Edit Quiz")
-    expect(page).not_to have_link("Delete Quiz")
-  end
-
-  scenario "A non owner signed in cannot see both links" do
-    login_as(@fred)
-
-    visit '/'
-
-    click_link @quiz.name
-
-    expect(page).not_to have_link("Edit Quiz")
-    expect(page).not_to have_link("Delete Quiz")
+    expect(current_path).to eq(new_user_session_path)
   end
 
   scenario "A signed in owner can see both links" do
@@ -43,6 +24,8 @@ RSpec.feature "Showing quizzes" do
   end
 
   scenario "Display an individual quiz" do
+    login_as(@fred)
+
     visit '/'
 
     click_link @quiz.name

@@ -34,6 +34,8 @@ RSpec.describe QuizzesController, type: :controller do
     end
 
     it "returns http success" do
+      @fred = User.create(email: "fred@example.com", password: "password")
+      login_user @fred
       get :index
       expect(response).to have_http_status(:success)
     end

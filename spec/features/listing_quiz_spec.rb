@@ -8,6 +8,7 @@ RSpec.feature "Listing quizzes" do
   end
 
   scenario "List all quizzes" do
+    login_as @john
     visit "/"
 
     expect(page).to have_content(@quiz1.name)
@@ -16,6 +17,5 @@ RSpec.feature "Listing quizzes" do
     expect(page).to have_content(@quiz2.description)
     expect(page).to have_link(@quiz1.name)
     expect(page).to have_link(@quiz2.name)
-    expect(page).not_to have_link("New Quiz")
   end
 end

@@ -63,6 +63,7 @@
       <% @quiz.questions.persisted.each do |question| %>
         <div class="quiz-body">
           <%= question.text %>
+          <%= link_to "Delete Question",  [@quiz,question], method: :delete, data: { confirm: "Are you sure?"} %>
         </div>
         <hr>
       <% end %>

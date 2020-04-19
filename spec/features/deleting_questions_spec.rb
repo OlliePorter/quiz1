@@ -6,15 +6,18 @@ RSpec.feature "Deleting a question" do
     @john = User.create!(email: "john@example.com", password: "password")
     login_as(@john)
     @quiz = Quiz.create(name:"Drag Race Quiz", description: "This is a quiz about the tv show Drag Race", user: @john)
-    @question = Question.create(text:"This is a question")
+    @question = @quiz.questions.create!(text: "This is a question")
   end
 
-  scenario do "A question can be deleted"
+  scenario "A question can be deleted" do
   visit "/"
 
-  click_link "Delete Question"
+  click_link @quiz.name
+  puts page.html
+  link = "//a[contains(@href, '/quizzes/#{@quiz.id}/questions/#{@question.id}') and .//text()='Delete Question']"
+  find(:xpath, link).click
 
   expect(page).to have_content("Question has been deleted")
-  expect(current_path).to eq(quizzes_path)
+  expect(current_path).to eq(quiz_path(@quiz))
   end
 end

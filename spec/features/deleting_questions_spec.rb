@@ -13,7 +13,6 @@ RSpec.feature "Deleting a question" do
   visit "/"
 
   click_link @quiz.name
-  puts page.html
   link = "//a[contains(@href, '/quizzes/#{@quiz.id}/questions/#{@question.id}') and .//text()='Delete Question']"
   find(:xpath, link).click
 

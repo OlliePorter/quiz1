@@ -4,12 +4,11 @@ RSpec.feature "Adding questions to quizzes" do
 
   before do
     @john = User.create(email: "john@example.com", password: "password")
-    @fred = User.create(email: "fred@example.com", password: "password")
     @quiz = Quiz.create(name: "Historical events", description: "A quiz on major historical events", user: @john)
   end
 
   scenario "permits a signed in user to add a question" do
-    login_as(@fred)
+    login_as(@john)
 
     visit "/"
     click_link @quiz.name

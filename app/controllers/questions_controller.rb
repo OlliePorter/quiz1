@@ -33,8 +33,8 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    # @question = @quiz.questions.build
     @question = Question.find params[:id]
+    @question_answer = @question.question_answers.build
   end
 
   def destroy

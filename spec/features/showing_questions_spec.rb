@@ -8,7 +8,7 @@ RSpec.feature "Showing questions" do
     @question = @quiz.questions.create!(text: "This is a question")
   end
 
-  scenario "Display an individual quiz" do
+  scenario "Display an individual question" do
     login_as(@fred)
 
     visit '/'

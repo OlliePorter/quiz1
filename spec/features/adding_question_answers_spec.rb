@@ -15,16 +15,13 @@ RSpec.feature "Adding answers to questions" do
 
   scenario "permits a signed in user to add answer to a question" do
     click_link @question.text
-    fill_in "Answer", with: "George Washington"
-    fill_in "Answer result", with: true
+    fill_in "New Answer", with: "George Washington"
+    check "Tick if correct answer"
 
-    click_button "Add Question Answer"
-
-    expect(page).to have_content("Question Answer has been created")
+    click_button "Add Answer"
+    expect(page).to have_content("Answer has been created")
     expect(page).to have_content("George Washington")
-    expect(page).to have_content("Thomas Jefferson")
-    expect(page).to have_content("Theodore Roosevelt")
-    expect(page).to have_content("Abraham Lincoln")
-    expect(current_path).to eq(quiz_questions_path(@question))
+    expect(current_path).to eq(quiz_question_path(@quiz,@question))
   end
 end
+

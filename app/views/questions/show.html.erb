@@ -13,7 +13,7 @@
           </h2>
           <div class="panel-body">
             <ul>
-              <% @question.errors.full_messages.each do |msg| %>
+              <% @question_answer.errors.full_messages.each do |msg| %>
                 <li>
                   <%= msg %>
                 </li>
@@ -24,10 +24,9 @@
       </div>
     <% end %>
 
-    <% if current_user == @quiz.user %>
       <div class='form-group'>
         <div class='control-label col-md-2'>
-          <%= f.label :answer_1, 'New Question Answer' %>
+          <%= f.label :text, 'New Answer' %>
         </div>
         <div class='col-md-10'>
           <%= f.text_field :text, rows: 10, class: 'form-control', placeholder: 'Enter an answer option' %>
@@ -36,7 +35,7 @@
 
       <div class='form-group'>
         <div class='control-label col-md-2'>
-          <%= f.label :answer_1_result, 'Tick if correct answer' %>
+          <%= f.label :correct, 'Tick if correct answer' %>
         </div>
         <div class='col-md-10'>
           <%= f.check_box :correct %>
@@ -45,9 +44,26 @@
 
       <div class='form-group'>
         <div class='col-md-offset-2 col-md-10'>
-          <%= f.submit "Add Question Answer", class: 'btn btn-primary btn-lg pull-right' %>
+          <%= f.submit "Add Answer", class: 'btn btn-primary btn-lg pull-right' %>
         </div>
       </div>
-    <% end %>
   <% end %>
+</div>
+
+<div class='col-md-12'>
+  <header>
+    <h2>Answers</h2>
+  </header>
+  <div class="col-md-10">
+    <% if @question.question_answers.any? %>
+      <% @question.question_answers.each do |answer| %>
+        <div class="answer-body">
+          <%= answer.text %>
+        </div>
+        <hr>
+      <% end %>
+    <% else %>
+      There are no answers to show.
+    <% end %>
+  </div>
 </div>

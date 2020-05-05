@@ -1,0 +1,71 @@
+<article class="detail-question">
+  <h1 class="question-detail-name"><%= @question.text %></h1>
+</article>
+
+<div class='col-md-12'>
+  <%= form_for [ @quiz, @question, @question_answer ], :html => {class: "form-horizontal", role: "form"} do |f| %>
+    <% if @question.errors.any? %>
+      <div class="panel panel-danger col-md-offset-1">
+        <div class="panel-heading">
+          <h2 class="panel-title">
+            <%= pluralize(@question_answer.errors.count, "error") %>
+            prohibited this question answer from being saved:
+          </h2>
+          <div class="panel-body">
+            <ul>
+              <% @question_answer.errors.full_messages.each do |msg| %>
+                <li>
+                  <%= msg %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+      <div class='form-group'>
+        <div class='control-label col-md-2'>
+          <%= f.label :text, 'New Answer' %>
+        </div>
+        <div class='col-md-10'>
+          <%= f.text_field :text, rows: 10, class: 'form-control', placeholder: 'Enter an answer option' %>
+        </div>
+      </div>
+
+      <div class='form-group'>
+        <div class='control-label col-md-2'>
+          <%= f.label :correct, 'Tick if correct answer' %>
+        </div>
+        <div class='col-md-10'>
+          <%= f.check_box :correct %>
+        </div>
+      </div>
+
+      <div class='form-group'>
+        <div class='col-md-offset-2 col-md-10'>
+          <%= f.submit "Add Answer", class: 'btn btn-primary btn-lg pull-right' %>
+        </div>
+      </div>
+  <% end %>
+</div>
+
+<div class='col-md-12'>
+  <header>
+    <h2>Answers</h2>
+  </header>
+  <div class="col-md-10">
+    <% if @question.question_answers.any? %>
+      <% @question.question_answers.persisted.each do |answer| %>
+        <div class="answer-body">
+          <%= answer.text %>
+          <%= link_to "Edit Answer", edit_quiz_question_question_answer_path(@quiz, @question, answer) %>
+          <%= link_to "Delete Answer", [@quiz,@question,answer], method: :delete, data: { confirm: "Are you sure?"} %>
+        </div>
+        <hr>
+      <% end %>
+    <% else %>
+      There are no answers to show.
+    <% end %>
+  </div>
+</div>

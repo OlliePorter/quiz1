@@ -64,7 +64,7 @@
     <% if @quiz.questions.any? %>
       <% @quiz.questions.persisted.each do |question| %>
         <div class="quiz-body">
-          <%= question.text %>
+          <%= link_to question.text, quiz_question_path(@quiz, question) %>
           <%= link_to "Edit Question", edit_quiz_question_path(@quiz, question) %>
           <%= link_to "Delete Question", [@quiz,question], method: :delete, data: { confirm: "Are you sure?"} %>
         </div>

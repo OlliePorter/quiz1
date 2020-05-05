@@ -56,9 +56,10 @@
   </header>
   <div class="col-md-10">
     <% if @question.question_answers.any? %>
-      <% @question.question_answers.each do |answer| %>
+      <% @question.question_answers.persisted.each do |answer| %>
         <div class="answer-body">
           <%= answer.text %>
+          <%= link_to "Delete Answer", [@quiz,@question,answer], method: :delete, data: { confirm: "Are you sure?"} %>
         </div>
         <hr>
       <% end %>

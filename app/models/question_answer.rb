@@ -5,4 +5,8 @@ class QuestionAnswer < ApplicationRecord
   validates :correct, inclusion: { in: [ true, false ] }
 
   default_scope { order(created_at: :desc) }
+
+  def self.persisted
+    where.not(id: nil)
+  end
 end

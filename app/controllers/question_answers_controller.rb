@@ -14,6 +14,21 @@ class QuestionAnswersController < ApplicationController
     redirect_to quiz_question_path(@quiz,@question)
   end
 
+  def edit
+    @question_answer = QuestionAnswer.find params[:id]
+  end
+
+  def update
+    @question_answer = QuestionAnswer.find params[:id]
+    if @question_answer.update(question_answer_params)
+      flash[:success] = "Answer has been updated"
+      redirect_to quiz_question_path(@quiz,@question)
+    else
+      flash.now[:danger] = "Answer has not been updated"
+      render :edit
+    end
+  end
+
   def destroy
     @question_answer = QuestionAnswer.find params[:id]
     if @question_answer.destroy

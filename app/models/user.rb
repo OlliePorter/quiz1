@@ -6,5 +6,5 @@ class User < ApplicationRecord
 
   has_many :quizzes
 
-  ROLES = %i[super_admin admin regular]
+  ROLES = %i[super_admin admin regular minimal]
 end

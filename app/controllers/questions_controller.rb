@@ -1,6 +1,8 @@
 class QuestionsController < ApplicationController
 
   before_action :set_quiz
+  authorize_resource :quiz
+  authorize_resource :question
 
   def create
     if current_user

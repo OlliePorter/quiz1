@@ -55,7 +55,7 @@
     <h2>Answers</h2>
   </header>
   <div class="col-md-10">
-    <% if @question.question_answers.any? %>
+    <% if @question.question_answers.any? && current_user.role != "minimal" %>
       <% @question.question_answers.persisted.each do |answer| %>
         <div class="answer-body">
           <%= answer.text %>
@@ -65,7 +65,7 @@
         <hr>
       <% end %>
     <% else %>
-      There are no answers to show.
+      You do not have the right permissions to view the answers
     <% end %>
   </div>
 </div>

@@ -1,5 +1,7 @@
 class QuizzesController < ApplicationController
   before_action :authenticate_user!
+  authorize_resource :quiz
+  authorize_resource :question
 
   def index
     @quizzes = Quiz.all

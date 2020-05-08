@@ -2,8 +2,8 @@ require "rails_helper"
 
 RSpec.feature "Showing questions" do
   before do
-    @john = User.create(email: "john@example.com", password: "password")
-    @fred = User.create(email: "fred@example.com", password: "password")
+    @john = User.create!(email: "john@example.com", password: "password", role: "super_admin")
+    @fred = User.create!(email: "fred@example.com", password: "password", role: "super_admin")
     @quiz = Quiz.create(name:"Drag Race Quiz", description: "This is a quiz about the tv show Drag Race", user: @john)
     @question = @quiz.questions.create!(text: "This is a question")
   end

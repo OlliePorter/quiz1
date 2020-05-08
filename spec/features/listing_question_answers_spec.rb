@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "Listing answers of questions" do
   before do
-    @john = User.create(email: "john@example.com", password: "password")
+    @john = User.create!(email: "john@example.com", password: "password", role: "super_admin")
     @quiz1 = Quiz.create(name:"CSS Quiz", description: "This is a quiz about CSS commands", user: @john)
     @question = @quiz1.questions.create!(text: "This is a test question")
     @question_answer1 = @question.question_answers.create!(text: "This is an answer", correct: true, question_id: @question.id)

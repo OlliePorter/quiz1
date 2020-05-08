@@ -5,14 +5,14 @@ RSpec.describe QuizzesController, type: :controller do
 
   describe "GET #edit" do
     before do
-      @john = User.create(email: "john@example.com", password: "password")
+      @john = User.create!(email: "john@example.com", password: "password", role: "super_admin")
+      @fred = User.create!(email: "fred@example.com", password: "password", role: "super_admin")
     end
 
     context "owner is allowed to edit their quizzes" do
       it "renders the edit template" do
         login_user @john
         quiz = Quiz.create(name: "first quiz", description: "body of first quiz", user: @john)
-
         get :edit, params: { id: quiz.id }
         expect(response).to render_template :edit
       end
@@ -20,8 +20,6 @@ RSpec.describe QuizzesController, type: :controller do
 
     context "non-owner is not allowed to edit other users quizzes" do
       it "redirects to the root path" do
-        @fred = User.create(email: "fred@example.com", password: "password")
-
         login_user @fred
 
         quiz = Quiz.create(name: "first quiz", description: "body of first quiz", user: @john)
@@ -34,7 +32,6 @@ RSpec.describe QuizzesController, type: :controller do
     end
 
     it "returns http success" do
-      @fred = User.create(email: "fred@example.com", password: "password")
       login_user @fred
       get :index
       expect(response).to have_http_status(:success)

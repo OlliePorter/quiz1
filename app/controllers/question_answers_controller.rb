@@ -1,6 +1,8 @@
 class QuestionAnswersController < ApplicationController
 
   before_action :set_question
+  authorize_resource :question
+  authorize_resource :question_answer
 
   def create
     @question_answer = @question.question_answers.build(question_answer_params)

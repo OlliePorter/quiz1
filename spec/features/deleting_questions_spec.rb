@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.feature "Deleting a question" do
 
   before do
-    @john = User.create!(email: "john@example.com", password: "password")
+    @john = User.create!(email: "john@example.com", password: "password", role: "super_admin")
     login_as(@john)
     @quiz = Quiz.create(name:"Drag Race Quiz", description: "This is a quiz about the tv show Drag Race", user: @john)
     @question = @quiz.questions.create!(text: "This is a question")

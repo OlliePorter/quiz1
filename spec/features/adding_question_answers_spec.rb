@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.feature "Adding answers to questions" do
 
   before do
-    @john = User.create(email: "john@example.com", password: "password")
+    @john = User.create!(email: "john@example.com", password: "password", role: "super_admin")
     @quiz = Quiz.create(name: "Historical events", description: "A quiz on major historical events", user: @john)
     @question = @quiz.questions.create!(text: "Who was the first president of the United States again?")
     login_as(@john)

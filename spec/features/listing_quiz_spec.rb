@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "Listing quizzes" do
   before do
-    @john = User.create(email: "john@example.com", password: "password")
+    @john = User.create!(email: "john@example.com", password: "password", role: "super_admin")
     @quiz1 = Quiz.create(name:"CSS Quiz", description: "This is a quiz about CSS commands", user: @john)
     @quiz2 = Quiz.create(name:"Drag Race Quiz", description: "This is a quiz about the tv show Drag Race", user: @john)
   end

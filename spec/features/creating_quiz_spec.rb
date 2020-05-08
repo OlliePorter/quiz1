@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "Creating questions" do
 
   before do
-    @john = User.create!(email: "john@example.com", password: "password")
+    @john = User.create!(email: "john@example.com", password: "password", role: "super_admin")
     login_as(@john)
   end
 

@@ -3,7 +3,9 @@ require "rails_helper"
 RSpec.feature "Adding questions to quizzes" do
 
   before do
-    @john = User.create(email: "john@example.com", password: "password")
+    @john = User.create!(email: "john@example.com", password: "password")
+    @john.role = "super_admin"
+    @john.save
     @quiz = Quiz.create(name: "Historical events", description: "A quiz on major historical events", user: @john)
   end
 

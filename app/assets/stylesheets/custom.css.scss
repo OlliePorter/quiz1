@@ -1,6 +1,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+$lilac_theme_color: #4da1a9;
+$dark_lilac_theme_color: #40858c;
+$dark_grey_theme_color: #7a7a7a;
+$light_grey_background_theme_color: #ececec;
+$grey_border_theme_color: #ccc;
+
 body {
   padding-top: 70px;
   background: #f9f9f9 !important;
@@ -11,14 +17,24 @@ body {
 }
 
 .quiz-card {
-  background-color: #fff;
+  background: $light_grey_background_theme_color;
   box-shadow: 0 2px 5px rgba(51, 62, 73, 0.1);
   border-radius: 6px;
+  border: 1px solid $grey_border_theme_color;
   padding: 20px;
   margin-top: 20px;
   margin-bottom: 20px;
-  border-color: #ccc;
   width: 40%;
+  color: $dark_grey_theme_color;
+
+  a {
+    color: $lilac_theme_color !important;
+    text-decoration: none !important;
+  }
+
+  a:hover {
+    color: $dark_lilac_theme_color !important;
+  }
 }
 
 .card-container {
@@ -44,17 +60,18 @@ body {
 }
 
 .quiz-name {
-  font-weight: bold;
   font-size: 2.5em;
   margin-bottom: 0.8em;
 }
 
 .quiz-description {
   font-size: 1.5em;
+  color: $dark_grey_theme_color;
 }
 
-#new-article-btn {
+#new-quiz-btn {
   margin-bottom: 10px;
+  color: $dark_grey_theme_color;
 }
 
 #quiz-date {
@@ -64,6 +81,10 @@ body {
 .quiz-detail-name {
   font-size: 4em;
   margin-bottom: 40px;
+}
+
+.title-style {
+  color: $dark_grey_theme_color;
 }
 
 .alert-error {
@@ -100,4 +121,98 @@ body {
   text-align: left;
   margin-left: 400px;
   margin-right: 400px;
+}
+
+.form-control {
+  min-height: 41px;
+  background: #fff;
+  box-shadow: none !important;
+  border-color: #e3e3e3;
+
+  &:focus {
+    border-color: $lilac_theme_color !important;
+  }
+}
+
+.form-control, .btn {
+  border-radius: 2px;
+}
+
+.login-form form {
+  color: $dark_grey_theme_color;
+  margin-bottom: 15px;
+  background: $light_grey_background_theme_color;
+  box-shadow: 0 2px 5px rgba(51, 62, 73, 0.1);
+  border-radius: 6px;
+  border: 1px solid $grey_border_theme_color;
+  padding: 30px;
+  position: relative;
+}
+
+.login-form h2 {
+  font-size: 22px;
+  margin: 15px 0 20px;
+  text-align: center;
+}
+
+.login-form .btn {
+  font-weight: bold;
+  background: $lilac_theme_color;
+  border: none;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  display: block;
+  width: 100%;
+  text-decoration: none;
+}
+
+.login-form a {
+  color: $lilac_theme_color;
+  text-decoration: underline;
+  border-radius: 50px;
+  width: 100%;
+}
+
+.login-form a:hover {
+  text-decoration: none;
+}
+
+.login-form form a {
+  color: white;
+  text-decoration: none;
+}
+
+.login-form form a:hover {
+  text-decoration: underline;
+}
+
+.login-text {
+  padding-top: 10px;
+}
+
+.login-form .btn:hover {
+  background-color: $dark_lilac_theme_color !important;
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+///* Media adjustment for 13 inch laptop devices of 1200px and up */
+@media only screen and (min-width: 1200px) {
+  .login-form {
+    width: 20vw;
+    margin: 0 auto;
+    padding-top: 10vh;
+  }
+}
+
+///* Media adjustment for larger displays of 1600px and up */
+@media only screen and (min-width: 1600px) {
+  .login-form {
+    width: 18vw;
+    margin: 0 auto;
+    padding-top: 15vh;
+  }
 }

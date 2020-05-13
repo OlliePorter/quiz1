@@ -246,7 +246,6 @@ a {
 
 .quiz-page-container {
   text-align: center;
-  //background-color: red;
 
   .btn-edit {
     margin-top: 20px;
@@ -341,7 +340,22 @@ a {
   a:first-of-type:hover {
     color: $dark_lilac_theme_color;
   }
+}
 
+.answer-style {
+  background: $light_grey_background_theme_color;
+  box-shadow: 0 2px 5px rgba(51, 62, 73, 0.1);
+  border-radius: 6px;
+  border: 1px solid $grey_border_theme_color;
+  padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 45%;
+  color: $dark_grey_theme_color;
+
+  a:first-of-type {
+    margin-left: 4em;
+  }
 }
 ///* Media adjustment for 13 inch laptop devices of 1200px and up */
 @media only screen and (min-width: 1200px) {

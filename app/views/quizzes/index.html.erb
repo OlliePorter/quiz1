@@ -1,19 +1,23 @@
-<h1>Here are the available quizzes</h1>
-<% if user_signed_in? %>
-  <%= link_to "New Quiz", new_quiz_path, class: "btn btn-default btn-lg", id: "new-article-btn" %>
-<% end %>
-<% @quizzes.each do |quiz| %>
-  <div class="well well-lg">
-    <div class="quiz-name">
-      <%= link_to quiz.name, quiz_path(quiz) %>
+<div class="title-container">
+  <h1 class="title-style">Here are the available quizzes</h1>
+  <% if user_signed_in? %>
+    <%= link_to "New Quiz", new_quiz_path, class: "btn btn-default btn-lg button-padding", id: "new-quiz-btn" %>
+  <% end %>
+</div>
+<div class="card-container">
+  <% @quizzes.each do |quiz| %>
+    <div class="quiz-card">
+      <div class="quiz-name">
+        <%= link_to quiz.name, quiz_path(quiz) %>
+      </div>
+      <div class="quiz-description">
+        <%= quiz.description %>
+      </div>
+      <% if quiz.user %>
+        <div class="author">
+          <small>Created by: <%= quiz.user.email %></small>
+        </div>
+      <% end %>
     </div>
-    <div class="quiz-description">
-      <%= quiz.description %>
-    </div>
-    <% if quiz.user %>
-    <div class="author">
-      <small>Created by: <%= quiz.user.email %></small>
-    </div>
-    <% end %>
-  </div>
-<% end %>
+  <% end %>
+</div>
